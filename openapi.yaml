@@ -1,0 +1,156 @@
+openapi: "3.0.3"
+servers:
+  description: Localhost
+  url: http://127.0.0.1:80
+info:
+  description: API Description
+  version: "1.0.0"
+  title: Prediccion de clientes de credito
+  contact:
+    email: "cldelcid@ufm.edu"
+    email1: "cldelcid@ufm.edu"
+paths:
+  /connection-status:
+    get:
+      summary: 'Checks that our API service is running'
+      responses:
+        default:
+          description: Default response.
+  /predict:
+    post:
+      summary: 'Predice si un cliente es bueno o malo para pagar basado en input JSON'
+      responses:
+        default:
+          description: Default response.
+      parameters: []
+      requestBody:
+        description: Stranded Patient Data
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Age: 
+                  type: number
+                  title: edad de la persona 
+                  example: 25
+                Sex: 
+                  type: factor
+                  title: sexo
+                  example: female
+                Job: 
+                  type: number
+                  title: job
+                  example: 2
+                Housing: 
+                  type: factor
+                  title: housing
+                  example: free
+                Saving.accounts: 
+                  type: factor
+                  title: savingAccounts
+                  example: little
+                Checking.account: 
+                  type: factor
+                  title: cheking
+                  example: little
+                Credit.amount: 
+                  type: number
+                  title: Creditamount
+                  example: 4308
+                Duration: 
+                  type: number
+                  title: duration
+                  example: 12
+                Purpose: 
+                  type: factor
+                  title: purpose
+                  example: business
+  /batches:
+    post:
+      summary: 'Predice si varios clientes son buenos o malos para pagar basado en input JSON'
+      responses:
+        default:
+          description: Default response.
+      parameters: []
+      requestBody:
+        description: Stranded Patient Data
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/batches'
+              example:
+                - Age: 42
+                  Sex: female
+                  Job: 2
+                  Housing: rent
+                  Saving.accounts: rich
+                  Checking.account: rich
+                  Credit.amount: 409
+                  Duration: 12
+                  Purpose: radio/TV
+                - Age: 37
+                  Sex: female
+                  Job: 2
+                  Housing: rent
+                  Saving.accounts: little
+                  Checking.account: little
+                  Credit.amount: 7685
+                  Duration: 48
+                  Purpose: business
+            
+            
+              
+  /metricas:
+   post:
+      summary: 'Predict stranded patients based on input JSON'
+      responses:
+        default:
+          description: Default response.
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                # file
+                file:
+                  type: string
+                  format: binary
+                  
+components:
+  schemas:
+    batches:
+      Age: 
+        type: number
+        title: edad de la persona 
+      Sex: 
+        type: factor
+        title: sexo
+      Job: 
+        type: number
+        title: job
+      Housing: 
+        type: factor
+        title: housing
+      Saving.accounts: 
+        type: factor
+        title: savingAccounts
+      Checking.account: 
+        type: factor
+        title: cheking
+      Credit.amount: 
+        type: number
+        title: Creditamount
+      Duration: 
+        type: number
+        title: duration
+        example: 12
+      Purpose: 
+        type: factor
+        title: purpose
