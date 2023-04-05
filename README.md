@@ -1,9 +1,6 @@
----
-title: "Descripcion de Proyecto"
-author: "Daniel Behar/Cruz del Cid"
-date: "13/11/2022"
----
-
+## Autores: 
+- Cruz del Cid [CruzdelCid](https://github.com/CruzdelCid)
+- Daniel Behar [dan-behar](https://github.com/dan-behar)
 
 # Machine Learning as a Service
 
